@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&email=samuelpratheep%40gmail.com&message=Hi+#projects -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratheep S - Portfolio</title>
+<!-- Google Fonts -->
+<link href="./Pratheep S - Portfolio_files/css2" rel="stylesheet">
+<!-- EmailJS SDK -->
+<script src="./Pratheep S - Portfolio_files/email.min.js.download"></script>
+<style>
+  :root {
+    --color-primary: #4facfe;
+    --color-secondary: #00f2fe;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background: #111;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* Navigation */
+nav {
+  position: fixed;
+  top: 0; width: 100%;
+  background: rgba(17,17,17,0.8);
+  display: flex;
+  justify-content: center; align-items: center;
+  padding: 10px 0; z-index: 999;
+}
+nav ul {
+  display: flex; flex-wrap: wrap; list-style: none;
+}
+nav li {
+  margin: 0 15px;
+}
+nav a {
+  color: #fff; text-decoration: none; font-weight: 700; padding: 10px 15px;
+  transition: background 0.3s;
+}
+nav a:hover {
+  background: var(--color-primary); border-radius: 5px;
+}
+
+/* Header / Hero */
+section#home {
+  text-align: center; padding: 100px 20px 50px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  position: relative; display: flex; flex-direction: column; align-items: center;
+}
+#home h1 {
+  font-size: 3em; margin-bottom: 20px;
+}
+#home p {
+  font-size: 1.2em; margin-bottom: 20px;
+}
+.profile-picture {
+  width: 300px; height: 300px; border-radius: 50%; object-fit: cover;
+  border: 4px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  margin-top: 20px; transition: transform 0.3s;
+}
+.profile-picture:hover { transform: scale(1.05); }
+
+/* Floating icons */
+.floating-icons {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; overflow: hidden; z-index: 1;
+}
+.icon {
+  position: absolute; font-size: 24px; opacity: 0.7; animation: floatUp 20s linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) translateX(0); }
+  100% { transform: translateY(-10vh) translateX(50px); }
+}
+
+/* Sections styling */
+section {
+  padding: 60px 20px;
+}
+h2 {
+  text-align: center; margin-bottom: 40px; font-size: 2em; color: var(--color-primary);
+}
+
+/* Skills */
+section#skills {
+  background: #222;
+}
+.skills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+}
+.skill {
+  background: #333; padding: 20px; border-radius: 10px; width: 250px; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.skill:hover { transform: translateY(-5px); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.progress-bar { height: 10px; background: #444; border-radius: 5px; margin-top: 10px; width: 100%; }
+.progress { height: 10px; background: var(--color-primary); border-radius: 5px; width: 100%; }
+
+/* Projects */
+section#projects {
+  background: #111;
+}
+.projects {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+}
+.project-card {
+  background: #222; width: 300px; border-radius: 10px; overflow: hidden; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+.project-img {
+  width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;
+}
+.project-card:hover .project-img { transform: scale(1.05); }
+.project-info { padding: 15px; text-align: center; }
+.project-title { font-size: 1.2em; margin-bottom: 10px; }
+.project-description { font-size: 0.95em; color: #ccc; }
+button.details-btn {
+  margin-top: 10px; padding: 8px 15px; background-color: var(--color-primary);
+  border: none; border-radius: 5px; cursor: pointer; color: #fff;
+}
+button.details-btn:hover { background-color: var(--color-secondary); }
+
+/* Timeline with animated center line */
+section#timeline {
+  position: relative; margin: 50px 0;
+}
+section#timeline h2 {
+  text-align: center; margin-bottom: 40px;
+}
+.timeline {
+  position: relative; max-width: 900px; margin: 0 auto;
+}
+.timeline::before {
+  content: ""; position: absolute; top: 0; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 4px; background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+}
+.timeline-event {
+  position: relative; width: 45%; padding: 20px; background: #222; border-radius: 10px;
+  margin: 20px auto; opacity: 0; transform: translateY(50px); transition: all 0.6s ease;
+}
+.timeline-event.left { float: left; clear: both; margin-left: calc(50% - 250px); }
+.timeline-event.right { float: right; clear: both; margin-right: calc(50% - 250px); }
+.timeline-event.show { opacity: 1; transform: translateY(0); }
+
+/* Achievements / Stats with animated separator line */
+section#achievements {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 60px 20px;
+}
+#achievements .achievements {
+  display: flex; gap: 30px; width: 100%; max-width: 900px;
+}
+.stat {
+  background: #333; padding: 30px; border-radius: 15px; flex: 1; min-width: 150px; text-align: center; position: relative;
+}
+.stat h2 {
+  font-size: 2em; margin-bottom: 10px; color: var(--color-primary);
+}
+.stat p { font-size: 1em; color: #ccc; }
+
+/* Contact layout with left info, center line, right message form */
+section#contact-layout {
+  display: flex; flex-wrap: wrap; gap: 20px; padding: 50px 20px; background: #222; align-items: flex-start;
+}
+.contact-info {
+  flex: 1; min-width: 250px; padding: 20px;
+}
+.contact-info h2 { margin-bottom: 20px; }
+.contact-info p { margin: 8px 0; }
+.contact-info a {
+  display: block; margin: 10px 0; color: #fff; text-decoration: none;
+}
+.center-line-container {
+  flex: 0 0 50px; display: flex; justify-content: center; align-items: center; position: relative;
+}
+.center-line {
+  width: 4px; height: 100%; background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  animation: pulseLine 2s infinite alternate;
+}
+@keyframes pulseLine {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+.contact-form-container {
+  flex: 2; min-width: 300px; padding: 20px;
+}
+#send-message {
+  background: #222; padding: 50px 20px; display: flex; flex-direction: column; align-items: center;
+}
+#send-message h2 { margin-bottom: 20px; }
+#contactForm {
+  width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 10px;
+}
+#contactForm input, #contactForm textarea {
+  padding: 10px; border-radius: 5px; border: none; width: 100%;
+}
+#contactForm button {
+  padding: 10px; background-color: var(--color-primary); color: #fff; border: none; border-radius: 5px; cursor: pointer;
+}
+#contactForm button:hover { background-color: var(--color-secondary); }
+
+/* Popup modal for skill/project details */
+#popupOverlay, #fullProjectOverlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);
+  display: none; justify-content: center; align-items: center; z-index: 99999;
+}
+#popupBox, #fullProjectBox {
+  background: #222; padding: 20px; border-radius: 10px; max-width: 600px; width: 90%; max-height: 80%; overflow-y: auto;
+  color: #fff;
+}
+#popupBox h3, #fullProjectBox h3 { margin-bottom: 10px; }
+#popupClose, #fullProjectClose {
+  margin-top: 15px; padding: 8px 15px; background-color: var(--color-primary); border: none; border-radius: 5px; cursor: pointer; color: #fff;
+}
+#popupClose:hover, #fullProjectClose:hover { background-color: var(--color-secondary); }
+/* Responsive adjustments */
+@media(max-width: 768px){
+  nav ul { flex-direction: column; }
+  section#contact-layout {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#home">Home</a></li>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#skills">Skills</a></li>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#projects">Projects</a></li>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#timeline">Timeline</a></li>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#achievements">Achievements</a></li>
+    <li><a href="file:///D:/HTML%20Test/SP%20Portfolio%20Update.html?name=Solomon&amp;email=samuelpratheep%40gmail.com&amp;message=Hi+#contact-layout">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Floating icons -->
+<div class="floating-icons" id="floatingIcons"><div class="icon" style="top: 61.8161vh; left: 92.1176vw; font-size: 28.2468px; animation-duration: 17.3056s; transform: translateX(21.8808px);">🎨</div><div class="icon" style="top: 13.2926vh; left: 77.0357vw; font-size: 15.4918px; animation-duration: 17.8545s; transform: translateX(38.4434px);">🚀</div><div class="icon" style="top: 91.0296vh; left: 9.85847vw; font-size: 21.6172px; animation-duration: 21.6217s; transform: translateX(-1.65261px);">🌐</div><div class="icon" style="top: 50.0244vh; left: 68.3361vw; font-size: 21.8079px; animation-duration: 23.3836s; transform: translateX(24.7995px);">📱</div><div class="icon" style="top: 17.0669vh; left: 66.66vw; font-size: 25.277px; animation-duration: 22.7927s; transform: translateX(26.4449px);">🚀</div><div class="icon" style="top: 2.27117vh; left: 83.4056vw; font-size: 19.4356px; animation-duration: 24.725s; transform: translateX(-20.7658px);">🎨</div><div class="icon" style="top: 10.3451vh; left: 90.216vw; font-size: 26.8238px; animation-duration: 20.9992s; transform: translateX(-25.5542px);">🚀</div><div class="icon" style="top: 35.6586vh; left: 55.6422vw; font-size: 24.1775px; animation-duration: 24.6607s; transform: translateX(-25.0143px);">📱</div><div class="icon" style="top: 37.0064vh; left: 81.0139vw; font-size: 13.6085px; animation-duration: 16.1687s; transform: translateX(-38.761px);">🌐</div><div class="icon" style="top: 88.8893vh; left: 79.9183vw; font-size: 23.5505px; animation-duration: 17.1206s; transform: translateX(-48.7228px);">💡</div><div class="icon" style="top: 7.05169vh; left: 11.2548vw; font-size: 19.4804px; animation-duration: 21.5344s; transform: translateX(-30.5301px);">💡</div><div class="icon" style="top: 77.6094vh; left: 44.9347vw; font-size: 22.8314px; animation-duration: 17.947s; transform: translateX(19.9129px);">🎨</div><div class="icon" style="top: 51.9955vh; left: 18.0224vw; font-size: 27.5752px; animation-duration: 17.8697s; transform: translateX(16.9053px);">🌐</div><div class="icon" style="top: 88.7065vh; left: 36.0223vw; font-size: 19.2214px; animation-duration: 19.6013s; transform: translateX(-36.4803px);">🔥</div><div class="icon" style="top: 71.167vh; left: 96.0155vw; font-size: 16.3604px; animation-duration: 15.6246s; transform: translateX(-32.4683px);">🚀</div><div class="icon" style="top: 90.6618vh; left: 13.1509vw; font-size: 12.1683px; animation-duration: 22.0342s; transform: translateX(35.7866px);">🎨</div><div class="icon" style="top: 58.9016vh; left: 21.8643vw; font-size: 10.543px; animation-duration: 19.4115s; transform: translateX(-44.0678px);">📱</div><div class="icon" style="top: 64.3464vh; left: 57.4471vw; font-size: 25.9186px; animation-duration: 22.7222s; transform: translateX(-46.1131px);">📱</div><div class="icon" style="top: 3.72547vh; left: 45.9013vw; font-size: 19.0933px; animation-duration: 23.8296s; transform: translateX(-1.87818px);">💻</div><div class="icon" style="top: 92.3756vh; left: 47.5847vw; font-size: 14.2764px; animation-duration: 22.9198s; transform: translateX(-18.1494px);">🌐</div><div class="icon" style="top: 42.3473vh; left: 24.0177vw; font-size: 19.4566px; animation-duration: 19.989s; transform: translateX(8.27703px);">🔥</div><div class="icon" style="top: 72.3598vh; left: 38.6378vw; font-size: 17.2432px; animation-duration: 17.3012s; transform: translateX(-31.7284px);">📱</div><div class="icon" style="top: 13.054vh; left: 75.4967vw; font-size: 21.518px; animation-duration: 17.7971s; transform: translateX(-19.0353px);">🎨</div><div class="icon" style="top: 45.2317vh; left: 59.8052vw; font-size: 20.5629px; animation-duration: 18.5996s; transform: translateX(28.7794px);">🚀</div><div class="icon" style="top: 29.4774vh; left: 8.8949vw; font-size: 26.5062px; animation-duration: 16.1232s; transform: translateX(31.6053px);">🎨</div><div class="icon" style="top: 27.3618vh; left: 15.2719vw; font-size: 23.1433px; animation-duration: 18.1868s; transform: translateX(19.1541px);">📱</div><div class="icon" style="top: 1.48978vh; left: 49.2788vw; font-size: 27.0335px; animation-duration: 20.5193s; transform: translateX(-42.549px);">⭐</div><div class="icon" style="top: 13.8556vh; left: 20.5285vw; font-size: 13.7821px; animation-duration: 22.6116s; transform: translateX(23.7669px);">🔥</div><div class="icon" style="top: 53.0096vh; left: 52.9977vw; font-size: 13.6986px; animation-duration: 23.4932s; transform: translateX(-32.3473px);">🎨</div><div class="icon" style="top: 5.82999vh; left: 58.3143vw; font-size: 26.8737px; animation-duration: 17.5469s; transform: translateX(-12.046px);">💻</div></div>
+
+<!-- Hero Section -->
+<section id="home">
+  <h1>PRATHEEP S</h1>
+  <p>Creative Designer &amp; Multimedia Specialist</p>
+  <img src="./Pratheep S - Portfolio_files/SP pic.jpg" alt="My Picture" class="profile-picture">
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+  <h2>My Skills</h2>
+  <div class="skills">
+    <div class="skill">
+      <h3>Design &amp; Multimedia Tools</h3>
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <p>Adobe Photoshop, Adobe After Effects, Canva, Final Cut Pro, DaVinci Resolve</p>
+    </div>
+    <div class="skill">
+      <h3>UI/UX &amp; Prototyping Tools</h3>
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <p>Figma, Adobe XD, Microsoft PowerPoint</p>
+    </div>
+    <div class="skill">
+      <h3>Video &amp; Camera Handling</h3>
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <p>DSLR &amp; Drone Camera Shooting, Lighting, Direction</p>
+    </div>
+    <div class="skill">
+      <h3>Training &amp; Development Tools</h3>
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <p>TMS (Foxconn Edu), Assessment Design, Feedback Mechanisms, Employee Engagement</p>
+    </div>
+    <div class="skill">
+      <h3>Soft Skills</h3>
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <p>Creative Thinking, Collaboration, Time Management, Communication, Problem Solving</p>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="projects">
+    <!-- Example Project -->
+    <div class="project-card" data-title="Official Corporate Video" data-details="Directed full company promotional video, scripting, shooting, editing.">
+      <img src="file:///D:/HTML%20Test/project1.jpg" alt="Official Corporate Video" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Official Corporate Video</h3>
+        <p class="project-description">Company promotional video</p>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+    <div class="project-card" data-title="Dormitory Promo Project" data-details="Created promotional videos for dormitory facilities.">
+      <img src="file:///D:/HTML%20Test/project2.jpg" alt="Dormitory Promo" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Dormitory Promo Project</h3>
+        <p class="project-description">Dormitory promotional videos</p>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+    <div class="project-card" data-title="Event Photos &amp; Video Coverage" data-details="Captured and edited event photos and videos.">
+      <img src="file:///D:/HTML%20Test/project3.jpg" alt="Event Coverage" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Event Photos &amp; Video Coverage</h3>
+        <p class="project-description">Event coverage</p>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+    <div class="project-card" data-title="Training Management System" data-details="Developed online training management system.">
+      <img src="file:///D:/HTML%20Test/project4.jpg" alt="Training Management System" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Training Management System</h3>
+        <p class="project-description">System development</p>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+    <div class="project-card" data-title="Online Training Videos" data-details="Produced online training videos for corporate training.">
+      <img src="file:///D:/HTML%20Test/project5.jpg" alt="Training Videos" class="project-img">
+      <div class="project-info">
+        <h3 class="project-title">Online Training Videos</h3>
+        <p class="project-description">Video production</p>
+        <button class="details-btn">Details</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section id="timeline">
+  <h2>My Career Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-event left show" data-index="0">
+      <h3>2020 - Present</h3>
+      <p>Senior Developer at XYZ Corp. Leading frontend projects and mentoring juniors.</p>
+    </div>
+    <div class="timeline-event right show" data-index="1">
+      <h3>2018 - 2020</h3>
+      <p>Frontend Developer at ABC Inc. Focused on UI/UX design and implementation.</p>
+    </div>
+    <div class="timeline-event left show" data-index="2">
+      <h3>2016 - 2018</h3>
+      <p>Junior Developer at Freelance. Worked on various projects.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements">
+  <h2>My Achievements</h2>
+  <div class="achievements">
+    <div class="stat" data-count="150">
+      <h2>150</h2>
+      <p>Projects Completed</p>
+    </div>
+    <div class="stat" data-count="100">
+      <h2>100</h2>
+      <p>Happy Clients</p>
+    </div>
+    <div class="stat" data-count="98">
+      <h2>98</h2>
+      <p>Skill Endorsements</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Layout -->
+<section id="contact-layout">
+  <!-- Your details -->
+  <div class="contact-info">
+    <h2>My Details</h2>
+    <p>Name: Pratheep S</p>
+    <p>Address: No:3, Zion House, Durga Avenue, Mudichur, Chennai 600048</p>
+    <p>Phone: +91 8220125878, +91 8608715878</p>
+    <p>Email: solomonpratheep2710@gmail.com</p>
+    <p>Portfolio: [Your Website]</p>
+    <p>LinkedIn: [Your LinkedIn]</p>
+  </div>
+  <!-- Center animated line -->
+  <div class="center-line-container">
+    <div class="center-line"></div>
+  </div>
+  <!-- Send message form -->
+  <div class="contact-form-container">
+    <h2>Send a Message</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required="">
+      <input type="email" name="email" placeholder="Your Email" required="">
+      <textarea name="message" rows="5" placeholder="Your Message" required=""></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="formStatus"></p>
+  </div>
+</section>
+
+<!-- Popup modal for skill/project details -->
+<div id="popupOverlay">
+  <div id="popupBox">
+    <h3 id="popupTitle"></h3>
+    <p id="popupDetails"></p>
+    <button id="popupClose">Close</button>
+  </div>
+</div>
+
+<!-- New modal for full project details -->
+<div id="fullProjectOverlay">
+  <div id="fullProjectBox">
+    <h3 id="fullProjectTitle"></h3>
+    <p id="fullProjectDetails"></p>
+    <button id="fullProjectClose">Close</button>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  // Generate floating icons
+  const iconContainer = document.getElementById('floatingIcons');
+  const icons = ['💻', '🚀', '🎨', '📱', '🌐', '⭐', '🔥', '💡'];
+  for(let i=0; i<30; i++){
+    const icon = document.createElement('div');
+    icon.className = 'icon';
+    icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+    icon.style.top = Math.random() * 100 + 'vh';
+    icon.style.left = Math.random() * 100 + 'vw';
+    icon.style.fontSize = (10 + Math.random() * 20) + 'px';
+    icon.style.animationDuration = (15 + Math.random() * 10) + 's';
+    icon.style.transform = `translateX(${(Math.random() - 0.5) * 100}px)`;
+    iconContainer.appendChild(icon);
+  }
+
+  // Animate timeline events on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.timeline-event').forEach((el) => {
+      if(el.getBoundingClientRect().top < window.innerHeight - 50){
+        el.classList.add('show');
+      }
+    });
+  });
+
+  // Animate counters
+  document.querySelectorAll('.stat').forEach(stat => {
+    const updateCount = () => {
+      const target = +stat.getAttribute('data-count');
+      const h2 = stat.querySelector('h2');
+      const current = +h2.innerText;
+      const increment = target / 100;
+      if(current < target){
+        h2.innerText = Math.ceil(current + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        h2.innerText = target;
+      }
+    };
+    updateCount();
+  });
+
+  // Initialize EmailJS - replace with your keys
+  emailjs.init('YOUR_PUBLIC_KEY');
+
+  // Handle contact form submit
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+    .then(function(response) {
+      document.getElementById('formStatus').innerText = "Message sent successfully!";
+      document.getElementById('contactForm').reset();
+    }, function(error) {
+      document.getElementById('formStatus').innerText = "Failed to send message.";
+    });
+});
+
+  // Popup for skill/project details
+const popupOverlay = document.getElementById('popupOverlay');
+const popupTitle = document.getElementById('popupTitle');
+const popupDetails = document.getElementById('popupDetails');
+const popupCloseBtn = document.getElementById('popupClose');
+
+function showPopup(title, details) {
+  popupTitle.innerText = title;
+  popupDetails.innerText = details;
+  popupOverlay.style.display = 'flex';
+}
+document.getElementById('popupClose').onclick = () => {
+  popupOverlay.style.display='none';
+};
+window.onclick = (e) => {
+  if(e.target===popupOverlay){ popupOverlay.style.display='none'; }
+}
+
+// Full project detail popup
+const fullProjectOverlay = document.getElementById('fullProjectOverlay');
+const fullProjectTitle = document.getElementById('fullProjectTitle');
+const fullProjectDetails = document.getElementById('fullProjectDetails');
+const fullProjectClose = document.getElementById('fullProjectClose');
+
+function showFullProjectPopup(title, details) {
+  fullProjectTitle.innerText = title;
+  fullProjectDetails.innerText = details;
+  fullProjectOverlay.style.display='flex';
+}
+fullProjectClose.onclick = () => {
+  fullProjectOverlay.style.display='none';
+};
+window.onclick = (e) => {
+  if(e.target===fullProjectOverlay){ fullProjectOverlay.style.display='none'; }
+}
+
+// Add click events for skills
+document.querySelectorAll('.skill').forEach(s => {
+  s.onclick= ()=> showPopup(s.dataset.title, s.dataset.details);
+});
+
+// Add click events for project "Details" buttons to open small popup
+document.querySelectorAll('.project-card').forEach(p => {
+  p.querySelector('.details-btn').onclick= ()=> showPopup(p.dataset.title, p.dataset.details);
+  // Also add event for full project details popup
+  p.querySelector('.details-btn').addEventListener('click', ()=> {
+    showFullProjectPopup(p.dataset.title, p.dataset.details);
+  });
+});
+</script>
+
+
+
+
+
+<div id="modal">
+  <div class="modal-content">
+    <span id="closeModal">×</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-description"></p>
+  </div>
+</div>
+</body></html>
